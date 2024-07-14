@@ -36,7 +36,7 @@ namespace OptIn.Voxel
             public NativeArray<VoxelLight> nativeLightData;
             
             NativeArray<Voxel> nativeVoxelsWithNeighbor;
-            NativeHashMap<int3, int> nativeNeighborHashMap;
+            NativeParallelHashMap<int3, int> nativeNeighborHashMap;
 
             public int frameCount;
             public JobHandle jobHandle;
@@ -54,7 +54,7 @@ namespace OptIn.Voxel
 
             public IEnumerator ScheduleLightingJob(List<Voxel[]> neighborVoxels, int3 chunkPosition, int3 chunkSize, int numNeighbor, bool argent = false)
             {
-                nativeNeighborHashMap = new NativeHashMap<int3, int>(neighborVoxels.Count, Allocator.TempJob);
+                nativeNeighborHashMap = new NativeParallelHashMap<int3, int>(neighborVoxels.Count, Allocator.TempJob);
 
                 int voxelIndex = 0;
                 int numNeighbors = 0;
@@ -141,7 +141,7 @@ namespace OptIn.Voxel
             [ReadOnly] public NativeArray<Voxel> voxelsWithNeighbor;
             [ReadOnly] public int3 chunkSize;
             [ReadOnly] public int3 chunkPosition;
-            [ReadOnly] public NativeHashMap<int3, int> neighborHashMap;
+            [ReadOnly] public NativeParallelHashMap<int3, int> neighborHashMap;
 
             [WriteOnly] public NativeArray<VoxelLight> lightDatas;
             

@@ -391,7 +391,7 @@ namespace OptIn.Voxel
             {
                 for (int direction = 0; direction < 6; direction++)
                 {
-                    NativeHashMap<int3, Empty> hashMap = new NativeHashMap<int3, Empty>(chunkSize[VoxelUtil.DirectionAlignedX[direction]] * chunkSize[VoxelUtil.DirectionAlignedY[direction]], Allocator.Temp);
+                    NativeParallelHashMap<int3, Empty> hashMap = new NativeParallelHashMap<int3, Empty>(chunkSize[VoxelUtil.DirectionAlignedX[direction]] * chunkSize[VoxelUtil.DirectionAlignedY[direction]], Allocator.Temp);
                     for (int depth = 0; depth < chunkSize[VoxelUtil.DirectionAlignedZ[direction]]; depth++)
                     {
                         for (int x = 0; x < chunkSize[VoxelUtil.DirectionAlignedX[direction]]; x++)
